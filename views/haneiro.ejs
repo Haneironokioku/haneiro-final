@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <!-- フォントの読み込み：丸ゴシックで可愛らしく -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ページ全体の設定 */
+        body {
+            font-family: "Zen Maru Gothic", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* 空色っぽい薄いブルー */
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* ヘッダー（ロゴ） */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #fff;
+            border-bottom: 4px solid #87ceeb; /* 空色のライン */
+        }
+        .site-logo {
+            width: 150px;
+            height: auto;
+        }
+
+        /* メインビジュアル */
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); /* 爽やかなグラデーション */
+            padding: 60px 20px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 実績バッジ（リボン風） */
+        .achievement-badge {
+            background-color: #ffd700; /* 金色 */
+            color: #d35400;
+            font-weight: bold;
+            padding: 10px 30px;
+            display: inline-block;
+            transform: rotate(-3deg); /* 少し傾けて動きを出す */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border: 2px solid #fff;
+            border-radius: 50px;
+        }
+
+        .hero img {
+            max-width: 100%;
+            max-height: 500px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            background-color: #fff;
+        }
+        .catchphrase {
+            font-size: 1.6rem;
+            margin-top: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            color: #0056b3;
+        }
+        .sub-catch {
+            font-size: 1.1rem;
+            color: #004494;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* コンテンツの枠 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* セクション共通 */
+        section {
+            margin-bottom: 60px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #007bff;
+            border-left: 6px solid #ffcc00; /* 黄色のアクセント */
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* あらすじの会話風デザイン */
+        .dialogue-box {
+            background-color: #fff;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto; /* 長いのでスクロールできるように */
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+        .dialogue-line {
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 8px;
+        }
+        .char-name {
+            font-weight: bold;
+            color: #0056b3;
+            margin-right: 5px;
+            display: inline-block;
+            min-width: 60px; /* 名前部分の幅を揃える */
+        }
+        /* ト書き（情景描写）のスタイル */
+        .scene-desc {
+            color: #888;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        /* 特徴リスト（カード風） */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid #ff9900;
+        }
+        .feature-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #d35400;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* ゲームシステム紹介 */
+        .system-box {
+            background-color: #eef9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .system-title {
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .system-box ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        /* 製品情報テーブル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+            width: 30%;
+        }
+
+        /* ボタン */
+        .btn-center {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 12px 40px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 0 #0056b3;
+        }
+        .back-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #0056b3;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #333;
+            color: #fff;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/">
+            <img src="/images/logo.png" alt="羽根いろの記憶" class="site-logo">
+        </a>
+    </header>
+
+    <div class="hero">
+        <!-- 実績アピールバッジ -->
+        <div class="achievement-badge">
+            👑 アルファポリス少年漫画ランク1位作家が贈る
+        </div>
+        <div class="sub-catch">会話を集めて育てる、新感覚育成スローライフRPG</div>
+        <br>
+
+        <img src="/images/haneiro_poster.jpg" alt="羽根いろ物語 キービジュアル">
+        <div class="catchphrase">色あせた世界を、君と彩る物語。</div>
+        <p>歴代キャラクターたちが集う、お祭りのような冒険へ。</p>
+    </div>
+
+    <div class="container">
+
+        <!-- ゲーム概要 -->
+        <section>
+            <h2>どんなゲーム？</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-title">会話で育てるRPG</span>
+                    村人たちと会話を集めることで、パートナーである「守り神ハネリゼ」が成長・進化！<br>
+                    好感度システムはなく、純粋に会話を楽しめます。
+                </div>
+                <div class="feature-card">
+                    <span class="feature-title">歴代キャラが集結！</span>
+                    『REVAIL』『ロストメモリーズ』『夢見草』など、季都碧音・知花芹菜の歴代作品からキャラクターが「村人」として登場。<br>
+                    あのキャラの意外な一面が見られるかも？
+                </div>
+                <div class="feature-card">
+                    <span class="feature-title">スローライフを満喫</span>
+                    この世界の動物はすべて「ハネリゼ」と呼ばれています。<br>
+                    すべてのハネリゼが飼育可能！釣り、料理、アクション要素のある山登りや滑空も楽しめます。
+                </div>
+            </div>
+        </section>
+
+        <!-- プロローグ（会話形式） -->
+        <section>
+            <h2>プロローグ：はじまりの場所</h2>
+            <div class="dialogue-box">
+                <div class="scene-desc">（美しい光と共に、3つのグループが広場に降り立つ。全員、少し戸惑いながら周囲を見回している）</div>
+                
+                <div class="dialogue-line"><span class="char-name">剣</span>「ようこそ！ ここは『羽根いろ村』。全ての世界と時間を繋ぐ、神様の箱庭だよ！」</div>
+                <div class="dialogue-line"><span class="char-name">ルイス</span>「あ？ なんだこりゃ……青い猫が喋ったぞ？」</div>
+                <div class="dialogue-line"><span class="char-name">ユーリィ</span>「わぁ！ 羽根が生えてる！ 可愛い～！」</div>
+                <div class="dialogue-line"><span class="char-name">結月</span>「本当だ……不思議な色……。ここ、どこなんでしょう？」</div>
+                <div class="dialogue-line"><span class="char-name">弦真</span>「結月、不用意に近づいてはいけません。私の後ろに」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「そんなに警戒しないでよ！ 僕は剣（つるぎ）。この世界の案内人、神獣だよ！」</div>
+                <div class="dialogue-line"><span class="char-name">零</span>「……やっぱり剣か。久しぶりだな」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「レイ！ それにウノも！ 良かった、知ってる顔がいて！」</div>
+                <div class="dialogue-line"><span class="char-name">ルイス</span>「おい、そこのチャラそうなの。お前、こいつの知り合いか？」</div>
+                <div class="dialogue-line"><span class="char-name">零</span>「チャラそうって……俺は零。夜月 零だ。こいつは俺たちの世界で世話になった『神獣』だよ。変な見た目だけど、悪い奴じゃないから安心してくれ」</div>
+                <div class="dialogue-line"><span class="char-name">ウノ</span>「……剣、うるさい。でも……便利」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「もう！ 扱いが雑だなぁ……」</div>
+                <div class="dialogue-line"><span class="char-name">弦真</span>「……なるほど。とりあえず危害を加える存在ではない、ということですね。私は霧島弦真。彼女は連れの篠宮結月です」</div>
+                <div class="dialogue-line"><span class="char-name">結月</span>「よ、よろしくお願いします……。弦真さん、なんだか空気が綺麗ですね」</div>
+                <div class="dialogue-line"><span class="char-name">弦真</span>「ええ。ですが、見知らぬ土地です。離れないように」</div>
+                <div class="dialogue-line"><span class="char-name">ルイス</span>「過保護なこって。オレはルイス。こっちはユーリィだ」</div>
+                <div class="dialogue-line"><span class="char-name">ユーリィ</span>「ユーリィです！ よろしくね！ ……あ、猫ちゃん！」</div>
+                <div class="dialogue-line"><span class="char-name">ルーマ</span>「うに！」</div>
+                <div class="dialogue-line"><span class="char-name">ウノ</span>「……ルーマ。わたしの」</div>
+                <div class="dialogue-line"><span class="char-name">零</span>「こらこらウノ、威嚇しない。（撫でる）こいつはルーマ。俺たちの相棒だ」</div>
+                <div class="dialogue-line"><span class="char-name">結月</span>「ふふ、可愛い猫ちゃんですね。……あれ？ その子が持っているのって……？」</div>
+
+                <div class="scene-desc">（全員の視線がルーマが抱えているものに集まる）</div>
+
+                <div class="dialogue-line"><span class="char-name">剣</span>「お！ さすがだね。そう、それが君たちをここに呼んだ理由だよ」</div>
+                <div class="dialogue-line"><span class="char-name">ルイス</span>「卵……か？ 結構デカいな」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「それは『ハネリゼ』の中でも特別な、『守り神ハネリゼ』の卵。この世界の神様たちからの贈り物さ」</div>
+                <div class="dialogue-line"><span class="char-name">零</span>「贈り物？」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「君たちは元の世界から、少しだけ『お休み』をもらってここに来たんだ。この卵を育てて、立派な守り神にできれば、元の世界とここを自由に行き来できる力を得られるよ」</div>
+                <div class="dialogue-line"><span class="char-name">弦真</span>「育てる、ですか。我々に務まるのでしょうか」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「大丈夫！ ここにいるみんなで協力して、会話をして、思い出を作ればいいんだ。ハネリゼはね、君たちの『言葉』や『心』を食べて育つからね」</div>
+                <div class="dialogue-line"><span class="char-name">ユーリィ</span>「言葉を食べて育つ……？ なんか素敵だね！」</div>
+                <div class="dialogue-line"><span class="char-name">ウノ</span>「……たまご、うごいた」</div>
+                <div class="dialogue-line"><span class="char-name">結月</span>「あ、本当です！ もう産まれるんでしょうか？」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「うん、もうすぐだね！ でも、どんな子が産まれるかは……君たちの『願い』次第だよ。さあ、心の準備はいい？」</div>
+                
+                <div class="scene-desc">（画面が暗転し、プレイヤーへの問いかけへ）</div>
+
+                <div class="dialogue-line"><span class="char-name">剣</span>「君は……どんな子に育ってほしい？」</div>
+                <div class="dialogue-line"><span class="char-name">剣</span>「まずは……見た目のタイプを選んでね！」</div>
+                
+                <div class="scene-desc">（画面にシルエット表示：ルーミタイプ、リュサタイプ、フレネタイプ）</div>
+                
+                <div class="dialogue-line"><span class="char-name">剣</span>「うんうん、次は性格だね。どんな子と仲良くなりたい？」</div>
+                
+                <div class="scene-desc">『やんちゃ』『穏やか』『元気』『いたずら好き』『優しい』</div>
+                
+                <div class="dialogue-line"><span class="char-name">剣</span>「よし！ 君の願いは届いたよ。さあ、あそこに見える村に行こう。そこで産まれるのを見届けようか！」</div>
+            </div>
+        </section>
+
+        <!-- 詳しいシステム -->
+        <section>
+            <h2>遊び方・システム</h2>
+            
+            <div class="system-box">
+                <span class="system-title">村人との会話システム</span>
+                一人一人に詳細な設定とストーリーがあります。<br>
+                料理を手渡すと特別なエピソードが聞けたり、操作するキャラクターによって相手の反応が変わったりします。<br>
+                連続した会話（クロストーク）はレア度が高く、守り神ハネリゼの経験値がたくさんもらえます！
+            </div>
+
+            <div class="system-box">
+                <span class="system-title">ハネリゼの育成と進化</span>
+                この世界の動物はすべて「ハネリゼ」と呼ばれ、<strong>すべてのハネリゼを飼育可能</strong>です。<br>
+                <ul>
+                    <li><strong>普通のハネリゼ：</strong>1回進化します。</li>
+                    <li><strong>守り神ハネリゼ：</strong>異世界から来たあなた達にだけ与えられる特別な存在。2回進化し、最後に「羽根いろノ欠片」を与えると<strong>「神化」</strong>して真の姿になります。</li>
+                </ul>
+            </div>
+
+            <div class="system-box">
+                <span class="system-title">やり込み要素</span>
+                <ul>
+                    <li><strong>図鑑コンプリート：</strong>野生のハネリゼ、魚、キャラクター、会話ログなど</li>
+                    <li><strong>料理：</strong>フライパンを振るアクションで成功率が変わる！</li>
+                    <li><strong>引き継ぎプレイ：</strong>「NewGame+」で図鑑を引き継いで遊べます</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 製品情報 -->
+        <section>
+            <h2>製品情報</h2>
+            <table>
+                <tr>
+                    <th>タイトル</th>
+                    <td>羽根いろ物語</td>
+                </tr>
+                <tr>
+                    <th>ジャンル</th>
+                    <td>会話で育てる育成スローライフRPG</td>
+                </tr>
+                <tr>
+                    <th>対応機種</th>
+                    <td>PC（Windows）</td>
+                </tr>
+                <tr>
+                    <th>価格</th>
+                    <td>体験版無料 / 製品版有料</td>
+                </tr>
+                <tr>
+                    <th>制作者</th>
+                    <td>
+                        制作：季都 碧音（Kito Aoto）<br>
+                        サークル：羽根いろの記憶
+                    </td>
+                </tr>
+            </table>
+            
+            <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #ffeeba;">
+                <strong>📢 イベント情報（大阪ゲームダンジョン & BOOTH）</strong><br>
+                当日は試遊版・体験版を公開！<br>
+                <span style="font-size: 0.9rem; color: #666;">
+                ※体験版特別仕様として、今回は<strong>「普通のハネリゼ」</strong>の育成のみ体験できます。<br>
+                通常よりも成長スピードが早く設定されており、すぐに進化の瞬間を楽しめます！<br>
+                （守り神ハネリゼの育成と神化は製品版でお楽しみください）
+                </span>
+            </div>
+        </section>
+
+        <div class="btn-center">
+            <a href="/" class="back-btn">トップページに戻る</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Haneiro no Kioku</p>
+    </footer>
+
+</body>
+</html>

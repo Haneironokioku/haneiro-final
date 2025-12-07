@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;700&family=Cinzel:wght@700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden; /* 横スクロール禁止 */
+        }
+        header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        .site-logo {
+            width: 100px;
+            height: auto;
+            background: rgba(255,255,255,0.9);
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        /* --- ファーストビュー（左右分割） --- */
+        .split-container {
+            display: flex;
+            height: 100vh; /* 画面いっぱいの高さ */
+            width: 100%;
+            position: relative;
+        }
+        
+        .split {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+            text-decoration: none;
+            color: #fff;
+            overflow: hidden;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* 芹菜エリア */
+        .serina-side {
+            background: linear-gradient(rgba(44, 20, 30, 0.7), rgba(44, 20, 30, 0.7)), url('/images/serina_art1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .serina-side:hover {
+            flex: 1.5;
+            background: linear-gradient(rgba(216, 27, 96, 0.4), rgba(216, 27, 96, 0.4)), url('/images/serina_art1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 季都エリア */
+        .kito-side {
+            background: linear-gradient(rgba(13, 71, 161, 0.7), rgba(13, 71, 161, 0.7)), url('/images/kito_model_rei.jpg');
+            background-size: cover;
+            background-position: center top;
+        }
+        .kito-side:hover {
+            flex: 1.5;
+            background: linear-gradient(rgba(33, 150, 243, 0.4), rgba(33, 150, 243, 0.4)), url('/images/kito_model_rei.jpg');
+            background-size: cover;
+            background-position: center top;
+        }
+
+        .name-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        .job-title {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+        .enter-btn {
+            margin-top: 30px;
+            padding: 10px 30px;
+            border: 2px solid #fff;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            background: rgba(0,0,0,0.3);
+        }
+        .split:hover .enter-btn {
+            background: #fff;
+            color: #333;
+        }
+
+        /* 中央のテキスト */
+        .center-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            pointer-events: none;
+            text-align: center;
+            background: rgba(0,0,0,0.6);
+            padding: 20px 40px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+        }
+        .center-text h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+        .center-text p {
+            font-size: 0.8rem;
+            margin: 0;
+            color: #ccc;
+        }
+
+        /* スクロール誘導矢印 */
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            color: #fff;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            cursor: pointer;
+        }
+        .scroll-text {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-family: 'Cinzel', serif;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-10px) translateX(-50%);}
+            60% {transform: translateY(-5px) translateX(-50%);}
+        }
+
+        /* --- チーム制作セクション（下に続く） --- */
+        .team-section {
+            background-color: #111;
+            padding: 80px 20px;
+            color: #fff;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        .team-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #d81b60, #007bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .team-subtitle {
+            color: #aaa;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 30px;
+            transition: 0.3s;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #666;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        /* 豪華なグラデーション枠線（疑似要素） */
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, #d81b60, #007bff);
+        }
+
+        .svc-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-family: 'Shippori Mincho', serif;
+        }
+        .svc-price {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: block;
+            font-weight: bold;
+        }
+        .svc-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .svc-tags {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .tag {
+            background: #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 60px;
+            padding: 15px 50px;
+            background: linear-gradient(90deg, #d81b60, #007bff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+                height: auto; /* スマホでは高さを自動に */
+            }
+            .split {
+                height: 50vh; /* スマホでは上下50%ずつ */
+            }
+            .scroll-down {
+                display: none; /* スマホではスクロール矢印を消す */
+            }
+            .center-text {
+                top: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/">
+            <img src="/images/logo.png" alt="羽根いろの記憶" class="site-logo">
+        </a>
+    </header>
+
+    <div class="center-text">
+        <h1>PORTFOLIO SELECTION</h1>
+        <p>Select a Creator to View Works</p>
+    </div>
+
+    <div class="split-container">
+        <!-- 芹菜ページへ -->
+        <a href="/portfolio/serina" class="split serina-side">
+            <h2 class="name-title">Serina</h2>
+            <div class="job-title">Illustration & Design</div>
+            <div class="enter-btn">VIEW PORTFOLIO</div>
+        </a>
+
+        <!-- 季都ページへ -->
+        <a href="/portfolio/kito" class="split kito-side">
+            <h2 class="name-title">Kito</h2>
+            <div class="job-title">3D Modeling & Scenario</div>
+            <div class="enter-btn">VIEW PORTFOLIO</div>
+        </a>
+
+        <!-- スクロール誘導 -->
+        <div class="scroll-down" onclick="document.getElementById('team-service').scrollIntoView({behavior: 'smooth'})">
+            <span class="scroll-text">Studio Works</span>
+            ▼
+        </div>
+    </div>
+
+    <!-- チーム制作・スタジオ依頼セクション -->
+    <div id="team-service" class="team-section">
+        <h2 class="team-title">Studio HANEIRO Production</h2>
+        <p class="team-subtitle">季都碧音 × 知花芹菜 による、世界観統一・一括制作サービス</p>
+
+        <div class="service-grid">
+            
+            <!-- 1. VTuber 3Dデビューパック -->
+            <div class="service-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3D VTuberデビューパックの相談'">
+                <div class="svc-title">✨ 3D VTuber デビュー/3D化パック</div>
+                <span class="svc-price">250,000円〜</span>
+                <p class="svc-desc">
+                    「身体(3D)」と「活動場所(UI/ロゴ)」をワンストップで。<br>
+                    季都の揺れもの完璧な3Dモデルと、芹菜のデザイン・ロゴ・配信UIをセットで提供。<br>
+                    <strong>【活動支援】</strong>OBSへの導入や3Dトラッキングの基礎設定も、経験者がサポートします。
+                </p>
+                <div class="svc-tags">
+                    <span class="tag">VRoid High-End</span>
+                    <span class="tag">Logo/UI Design</span>
+                    <span class="tag">OBS Support</span>
+                </div>
+            </div>
+
+            <!-- 2. キャラクターデザイン & 3D化 -->
+            <div class="service-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=キャラデザ・3D化セットの相談'">
+                <div class="svc-title">🎨 キャラデザ & 3D化セット</div>
+                <span class="svc-price">100,000円〜</span>
+                <p class="svc-desc">
+                    「あなたの考えた最強のキャラを、動かせる形に」。<br>
+                    芹菜が魅力的な三面図・デザインを起こし、季都がそれを忠実に3Dモデル化します。<br>
+                    VRChat用、動画制作、観賞用など用途に合わせて最適化します。
+                </p>
+                <div class="svc-tags">
+                    <span class="tag">Character Design</span>
+                    <span class="tag">3D Modeling</span>
+                    <span class="tag">Physics Setup</span>
+                </div>
+            </div>
+
+            <!-- 3. 世界観・設定構築 -->
+            <div class="service-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=世界観・設定構築の相談'">
+                <div class="svc-title">📖 世界観・キャラクター設定構築</div>
+                <span class="svc-price">50,000円〜</span>
+                <p class="svc-desc">
+                    VTuberの「魂」となる設定や、創作企画の世界観を構築します。<br>
+                    季都（ランク1位作家）が詳細な設定やバックボーンを執筆し、芹菜がそれを視覚化（ビジュアルボード・ラフ）します。
+                </p>
+                <div class="svc-tags">
+                    <span class="tag">Scenario/Lore</span>
+                    <span class="tag">Concept Art</span>
+                    <span class="tag">World Building</span>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="mailto:haneironokioku@gmail.com?subject=チーム制作・スタジオ依頼の相談" class="contact-btn">チームへの制作依頼・相談はこちら</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ページ全体の設定 */
+        body {
+            font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif; /* 和風な雰囲気に */
+            margin: 0;
+            padding: 0;
+            background-color: #fdfcf8; /* 和紙っぽい薄いクリーム色 */
+            color: #3e3a39;
+            line-height: 1.8;
+        }
+
+        /* ヘッダー（ロゴ） */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0d8cc;
+            background-color: #fff;
+        }
+        .site-logo {
+            width: 150px; /* トップページより少し控えめに */
+            height: auto;
+        }
+
+        /* メインビジュアル */
+        .hero {
+            text-align: center;
+            background-color: #2b202a; /* 暗めの紫系 */
+            color: #fff;
+            padding: 60px 20px;
+        }
+        .hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.3); /* ほんのり桜色の光 */
+            max-height: 500px;
+            object-fit: contain;
+        }
+        .catchphrase {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            font-weight: bold;
+            color: #ffdae0; /* 桜色 */
+        }
+
+        /* コンテンツの枠 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* セクション（あらすじ、特徴など） */
+        section {
+            margin-bottom: 60px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eebbcb; /* ピンクの線 */
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .section-center {
+            text-align: center;
+        }
+
+        /* 特徴リスト */
+        .feature-box {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid #d48796;
+        }
+        .feature-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #9e4e60;
+            margin-bottom: 10px;
+        }
+
+        /* あらすじのテキスト */
+        .story-text {
+            text-align: left;
+            white-space: pre-wrap; /* 改行をそのまま表示 */
+        }
+
+        /* 製品情報 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            width: 30%;
+            background-color: #f9f0f2;
+            color: #9e4e60;
+        }
+
+        /* 戻るボタン */
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 30px;
+            background-color: #9e4e60;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #be7083;
+        }
+        
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/">
+            <img src="/images/logo.png" alt="羽根いろの記憶" class="site-logo">
+        </a>
+    </header>
+
+    <div class="hero">
+        <img src="/images/yumemiso_poster.jpg" alt="夢見草の夜、君と キービジュアル">
+        <div class="catchphrase">夢に咲き、記憶に結ぶ、切ない恋の物語</div>
+    </div>
+
+    <div class="container">
+        
+        <section>
+            <div class="section-center">
+                <h2>特徴・こだわり</h2>
+                <p>貴方の恋愛体験を最高に美しく</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-title">【静謐な美と統一感】</div>
+                乙女ゲームの核となる立ち絵、イベントスチル、UI、ロゴのすべてを、一人のクリエイターが担当。世界観が統一されており、物語への没入感を極限まで高めます。
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-title">【感情に訴えかける演出】</div>
+                繊細な光の表現や影のつけ方（ライティング）にこだわり、雨の日や夕暮れといったシーンごとの「空気感」を忠実に再現。キャラクターの感情がダイレクトに伝わります。
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-title">【魅力的な攻略対象】</div>
+                知的、危険、癒やし、クール、熱血など、乙女ゲームの「王道」となる属性を網羅。貴方の「推し」が必ず見つかります。
+            </div>
+        </section>
+
+        <section>
+            <div class="section-center">
+                <h2>あらすじ</h2>
+            </div>
+            <div class="story-text">
+主人公は、ごく普通の大学生。
+
+しかし、ある日を境に、夢の中で“現実には存在しない、もう一つの世界”を見るようになる。
+そこは、雅でどこか懐かしい、和の香りが漂う幻の空間。
+
+夢の中で出逢うのは、現代の日常では決して出会うはずのない謎めいた男性たち。
+そして、絢爛豪華な衣をまとった「花祈姫（はなのりひめ）」と呼ばれる、もう一人の自分。
+
+主人公は気付く。それは単なる夢ではなく、失われた「記憶」の断片であることに——。
+
+「貴女をようやく見つけた」
+
+夢の世界で交わした約束の相手は誰なのか？ 
+現代の彼らと、夢の彼らの関係とは？
+
+これは、夢と現実、そして前世の記憶を巡り、貴方と紡ぐ切なくも美しい恋の物語。
+            </div>
+        </section>
+
+        <section>
+            <div class="section-center">
+                <h2>製品情報</h2>
+            </div>
+            <table>
+                <tr>
+                    <th>タイトル</th>
+                    <td>夢見草の夜、君と</td>
+                </tr>
+                <tr>
+                    <th>ジャンル</th>
+                    <td>和風幻想恋愛アドベンチャー / 女性向けノベルゲーム</td>
+                </tr>
+                <tr>
+                    <th>対応機種</th>
+                    <td>PC（Windows / Mac）</td>
+                </tr>
+                <tr>
+                    <th>価格</th>
+                    <td>体験版無料 / 製品版有料</td>
+                </tr>
+                <tr>
+                    <th>制作者</th>
+                    <td>
+                        制作：知花 芹菜（Tomoka Serina）<br>
+                        サークル：羽根いろの記憶
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <div class="section-center">
+            <a href="/" class="back-btn">トップページに戻る</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Haneiro no Kioku</p>
+    </footer>
+
+</body>
+</html>

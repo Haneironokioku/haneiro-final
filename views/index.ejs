@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全体の設定 */
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #444;
+        }
+
+        /* ヘッダー：ロゴを表示する設定 */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        /* ロゴ画像のサイズ調整（200pxに設定済み） */
+        .site-logo {
+            max-width: 200px; /* ここを200pxに維持 */
+            width: 80%;
+            height: auto;
+        }
+
+        /* ポートフォリオボタンのデザイン */
+        .portfolio-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 25px;
+            background-color: #333; /* 黒っぽいグレー */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            font-family: "Zen Maru Gothic", sans-serif;
+        }
+        .portfolio-link:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+
+        /* メインエリア：2つのゲームを並べる */
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ゲームカードのデザイン */
+        .game-card {
+            width: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 560px;
+            object-fit: cover;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        .card-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .game-genre {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .btn-arrow {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #f9f9f9;
+            padding: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+   <header>
+    <img src="/images/logo.png" alt="羽根いろの記憶" class="site-logo">
+    <br>
+    <!-- ここにポートフォリオへのボタンを追加しました！ -->
+    <a href="/portfolio" class="portfolio-link">📋 制作者ポートフォリオを見る</a>
+</header>
+
+    <div class="games-container">
+        
+        <a href="/haneiro" class="game-card">
+            <img src="/images/haneiro_poster.jpg" alt="羽根いろ物語" class="card-image">
+            <div class="card-info">
+                <div class="game-title">羽根いろ物語</div>
+                <span class="game-genre">育成スローライフRPG</span>
+                <p style="font-size: 0.9rem; line-height: 1.6;">
+                    色あせた世界を、君と彩る物語。<br>
+                    歴代キャラクターたちが集う、お祭りのような冒険へ。
+                </p>
+                <div class="btn-arrow">VIEW SITE →</div>
+            </div>
+        </a>
+
+        <a href="/yumemiso" class="game-card">
+            <img src="/images/yumemiso_poster.jpg" alt="夢見草の夜、君と ポスター" class="card-image">
+            <div class="card-info">
+                <div class="game-title">夢見草の夜、君と</div>
+                <span class="game-genre">【夢×記憶×幻想】恋愛アドベンチャー</span>
+                <p style="font-size: 0.9rem; line-height: 1.6;">
+                    夢に咲き、記憶に結ぶ。<br>
+                    切なくも甘い、和風ロマンスの物語。
+                </p>
+                <div class="btn-arrow">VIEW SITE →</div>
+            </div>
+        </a>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Haneiro no Kioku</p>
+    </footer>
+
+</body>
+</html>

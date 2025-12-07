@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* 季都用テーマカラー：知性と信頼のディープブルー & ゴールド */
+        body { font-family: "Shippori Mincho", "Zen Kaku Gothic New", serif; margin: 0; background-color: #f8f9fa; color: #333; line-height: 1.8; }
+        header { text-align: center; padding: 20px; background: #fff; border-bottom: 4px solid #0d47a1; position: relative; }
+        .back-home { position: absolute; left: 20px; top: 30px; text-decoration: none; color: #0d47a1; font-weight: bold; font-family: sans-serif; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* ヒーローエリア */
+        .hero-section {
+            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero-sub {
+            font-size: 1.1rem;
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .hero-copy {
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 20px 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        .hero-copy p {
+            font-size: 1.3rem;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        h2 { 
+            text-align: center; 
+            font-size: 1.8rem; 
+            margin-top: 80px; 
+            margin-bottom: 40px; 
+            color: #0d47a1; 
+            border-bottom: 2px solid #90caf9; 
+            padding-bottom: 15px; 
+            display: inline-block; 
+            width: 100%; 
+        }
+        
+        /* プロフィール */
+        .profile-box { 
+            background: #fff; 
+            padding: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+            border-left: 6px solid #0d47a1; 
+        }
+        .profile-name { font-size: 1.5rem; color: #0d47a1; margin-top: 0; font-weight: bold; }
+        .profile-role { font-size: 1rem; color: #555; font-family: sans-serif; margin-left: 10px; }
+        .profile-text { font-size: 1.05rem; margin-top: 20px; }
+        
+        /* 実績ランキング */
+        .ranking-container { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .ranking-img { width: 150px; border-radius: 4px; border: 2px solid #ffd700; cursor: pointer; transition: 0.3s; }
+        .ranking-img:hover { transform: scale(1.05); }
+
+        /* --- プランエリア --- */
+        .plan-section {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .plan-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(13, 71, 161, 0.15);
+            border-color: #90caf9;
+        }
+        
+        /* プランヘッダー */
+        .plan-header {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .plan-title {
+            font-size: 1.4rem;
+            color: #0d47a1;
+            font-weight: bold;
+        }
+        .plan-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            font-family: sans-serif;
+        }
+        .plan-badge {
+            background: #0d47a1;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: sans-serif;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        
+        /* プランボディ */
+        .plan-body {
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .plan-desc {
+            flex: 1;
+            min-width: 300px;
+        }
+        .plan-desc h4 { margin-top: 0; color: #555; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .plan-list { padding-left: 20px; color: #444; }
+        .plan-list li { margin-bottom: 8px; }
+
+        /* マネージャーコメント枠 */
+        .manager-comment {
+            flex: 1;
+            min-width: 250px;
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1976d2;
+            font-size: 0.95rem;
+            color: #0d47a1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .manager-label {
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: #1976d2;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* PLAN Aの特別装飾 */
+        .plan-card.premium {
+            border: 2px solid #ffd700;
+        }
+        .plan-card.premium .plan-header {
+            background: linear-gradient(to right, #fff8e1, #fff);
+        }
+        .plan-card.premium .plan-badge {
+            background: #ffd700;
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        /* ギャラリー */
+        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .model-img { width: 100%; border-radius: 4px; cursor: pointer; transition: 0.3s; border: 1px solid #eee; }
+        .model-img:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        .work-grid { display: grid; gap: 20px; }
+        .work-img { width: 100%; border-radius: 8px; border: 1px solid #ddd; cursor: pointer; }
+
+        /* 動画代替ボックス */
+        .no-video-box {
+            background: #000;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+        }
+        .no-video-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        /* モーダル */
+        .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { max-width: 90%; max-height: 90vh; }
+        .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+        
+        .contact-btn-main {
+            display: inline-block;
+            background: linear-gradient(90deg, #0d47a1, #1976d2);
+            color: #fff;
+            padding: 15px 60px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+            transition: 0.3s;
+        }
+        .contact-btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(13, 71, 161, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/portfolio" class="back-home">← Back to Portal</a>
+        <h1>KITO AOTO PORTFOLIO</h1>
+        <div class="hero-sub">Total Visual Director / Scenario Writer</div>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-title">世界観を、ゼロから完成まで“実装”する</div>
+        <div class="hero-copy">
+            <p>漫画ランク1位の「物語構築力」 × UE5の「実装力」</p>
+            <p style="font-size:1rem; font-weight:normal; margin-top:10px;">あなたの脳内にある世界を、画と3Dで「現界」させます。</p>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- プロフィール -->
+        <section class="profile-box">
+            <div class="profile-name">季都 碧音 <span class="profile-role">Total Visual Director</span></div>
+            <div class="profile-text">
+                <p>
+                    アルファポリス少年漫画ランキング1位を獲得した構成力を武器に、キャラクターデザインから3Dモデリング、そしてUnreal Engine 5への実装までを<strong>「たった一人で完結させる」</strong>クリエイター。<br>
+                    「絵を描いて終わり」「モデルを作って終わり」ではありません。<br>
+                    <strong>「そのキャラクターがどんな過去を持ち、ゲームの中でどう動き、どう生きるか」</strong>までを設計し、納品します。<br>
+                    90年代〜00年代の「熱気あるJ-RPG」の美学を、現代の技術で継承・進化させることを得意とします。
+                </p>
+            </div>
+            
+            <!-- 実績ランキング -->
+            <!-- エラー箇所を修正しました: paddingtop -> padding-top -->
+            <div style="margin-top:30px; border-top:1px dashed #ddd; padding-top:20px;">
+                <strong>🏆 アルファポリス 少年漫画ランク1位・人気HOT2位 獲得</strong>
+                <div class="ranking-container">
+                    <img src="/images/lanking_syounen.jpg" class="ranking-img" onclick="openModal(this)">
+                    <img src="/images/lanking.jpg" class="ranking-img" onclick="openModal(this)">
+                    <img src="/images/lanking_hot.jpg" class="ranking-img" onclick="openModal(this)">
+                </div>
+            </div>
+        </section>
+
+        <!-- サービスメニュー -->
+        <h2>SERVICE / ご依頼メニュー</h2>
+        <div class="plan-section">
+            
+            <!-- PLAN A -->
+            <div class="plan-card premium" onclick="location.href='mailto:haneironokioku@gmail.com?subject=トータル・プロデュースの相談'">
+                <div class="plan-header">
+                    <div>
+                        <span class="plan-badge">PLAN A</span>
+                        <div class="plan-title">【究極の全部入り】トータル・プロデュース</div>
+                    </div>
+                    <div class="plan-price">300,000円〜 <span style="font-size:0.8rem; font-weight:normal;">/ 1キャラ</span></div>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-desc">
+                        <h4>対象：本気でゲームを作りたい個人・企業、大規模VTuber案件</h4>
+                        <ul class="plan-list">
+                            <li><strong>世界観・脚本監修：</strong>ランク1位作家による設定構築。</li>
+                            <li><strong>メインビジュアル：</strong>ロゴ配置まで計算された「売れる一枚絵」。</li>
+                            <li><strong>3Dモデル制作：</strong>VRoidベースで高速かつ高品質に制作。</li>
+                        </ul>
+                    </div>
+                    <div class="manager-comment">
+                        <span class="manager-label">💡 MANAGER'S NOTE</span>
+                        「イラストと3Dを別々の人に頼んで『顔が違う…』と悩む必要はありません。私が全責任を持って、イメージを統一させます」
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLAN B -->
+            <div class="plan-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3Dキャラクター制作の相談'">
+                <div class="plan-header">
+                    <div>
+                        <span class="plan-badge">PLAN B</span>
+                        <div class="plan-title">【爆速の実装】3Dキャラクター制作</div>
+                    </div>
+                    <div class="plan-price">
+                        人型 80,000円〜 <span style="font-size:0.8rem; font-weight:normal;">(マスコット6万〜)</span>
+                    </div>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-desc">
+                        <h4>対象：インディーゲーム開発者、急ぎでモデルが必要な方</h4>
+                        <ul class="plan-list">
+                            <li><strong>超速モデリング：</strong>ラフモデルなら最短2時間。</li>
+                            <li><strong>漫画的表現：</strong>感情が伝わる「生きた表情差分」の実装。</li>
+                            <li><strong>物理演算：</strong>髪や服の揺れ設定を完璧に行います。</li>
+                        </ul>
+                    </div>
+                    <div class="manager-comment">
+                        <span class="manager-label">💡 MANAGER'S NOTE</span>
+                        「ハネリゼのような『進化するモンスター』のデザインと3D化は、私の独壇場です。あなたのゲームの相棒を作らせてください」
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLAN C -->
+            <div class="plan-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=キービジュアル・イラストの相談'">
+                <div class="plan-header">
+                    <div>
+                        <span class="plan-badge">PLAN C</span>
+                        <div class="plan-title">【物語を描く】キービジュアル・イラスト</div>
+                    </div>
+                    <div class="plan-price">150,000円〜</div>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-desc">
+                        <h4>対象：パッケージ絵、小説表紙、ポスター</h4>
+                        <ul class="plan-list">
+                            <li><strong>高密度描写：</strong>背景、複数キャラ、エフェクト込み。</li>
+                            <li><strong>ドラマチックな構図：</strong>物語のクライマックスを切り取ったような演出。</li>
+                        </ul>
+                    </div>
+                    <div class="manager-comment">
+                        <span class="manager-label">💡 MANAGER'S NOTE</span>
+                        「流行りの淡い絵ではありません。視線を釘付けにする『強い絵』が必要な時、私を頼ってください」
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 動画セクションの代替（軽量化） -->
+        <h2>MOVIE / 制作デモ</h2>
+        
+        <div class="no-video-box">
+            <div class="no-video-title">🎥 3Dキャラクター & マップ制作デモ</div>
+            <p>
+                「感情豊かな表情差分」や「揺れものの物理演算」、<br>
+                そしてUnreal Engine 5による「4時間で制作したマップの実装」など、<br>
+                <strong>実際の動きは大阪ゲームダンジョン会場にて展示しております。</strong>
+            </p>
+            <p style="margin-top:20px; font-weight:bold; color:#ffd700;">
+                ぜひ、ブースにて実機をご覧ください。
+            </p>
+        </div>
+
+        <!-- 3Dモデルギャラリー（ファイル名を元のままに修正しました） -->
+        <h2>3D WORKS / 制作実績</h2>
+        <div class="model-grid">
+            <img src="/images/portfolio_marin.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_rei.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_uno.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_hanelize.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_seraphy.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_alisia.jpg" class="model-img" onclick="openModal(this)">
+        </div>
+
+        <!-- デザイン・依頼実績 -->
+        <h2>CLIENT WORKS / デザイン・依頼実績</h2>
+        <div class="work-grid">
+            <img src="/images/portfolio_irai01.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_irai02.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_irai03.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_hanelize_rahu.jpg" class="work-img" onclick="openModal(this)">
+        </div>
+
+        <!-- 料金表エリア -->
+        <h2>Service & Price / 制作メニュー・料金表</h2>
+        <p style="margin-bottom:30px; font-size:0.9rem;">
+            ※「安かろう悪かろう」ではなく、<strong>「技術による工数短縮」</strong>で高品質なものを短納期で提供します。<br>
+            ※以下の料金表をクリックすると、そのままメールフォーム（お問い合わせ）へ移動します。
+        </p>
+        
+        <div class="price-grid">
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3D等身モデル制作の依頼について'">
+                <div class="recommend-badge">推し！</div>
+                <div class="price-title">3D等身モデル制作</div>
+                <div class="price-feature">
+                    <strong>🚀 最短7時間〜完成可能</strong><br>
+                    表情差分・物理演算(揺れ)・最適化込み。
+                </div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">60,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">120,000円〜</span>
+                </div>
+                <div class="click-hint">✉ このプランを相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3DSDモデル制作の依頼について'">
+                <div class="price-title">3D SD(ちび)モデル</div>
+                <div class="price-feature">
+                    <strong>⚡ プラス4時間で制作</strong><br>
+                    等身モデルとセットならさらにお得に。
+                </div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">30,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">60,000円〜</span>
+                </div>
+                <div class="click-hint">✉ このプランを相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3D人外・マスコット制作の依頼について'">
+                <div class="price-title">3D 人外・マスコット</div>
+                <div class="price-feature">
+                    <strong>🐲 約4時間で制作</strong><br>
+                    オリジナルモンスターの立体化。
+                </div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">30,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">60,000円〜</span>
+                </div>
+                <div class="click-hint">✉ このプランを相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3Dマップ制作の依頼について'">
+                <div class="price-title">3D マップ・背景制作</div>
+                <div class="price-feature">
+                    <strong>🏘️ 1マップ最短4時間〜</strong><br>
+                    アセット活用・フォリッジ・ライティング調整。
+                </div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">40,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">80,000円〜</span>
+                </div>
+                <div class="click-hint">✉ このプランを相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=キャラクターデザインの依頼について'">
+                <div class="price-title">キャラクターデザイン</div>
+                <div class="price-feature">
+                    <strong>🎨 最短1日で立ち絵完成</strong><br>
+                    3D化を前提とした「破綻のないデザイン」。
+                </div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">30,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">60,000円〜</span>
+                </div>
+                <div class="click-hint">✉ このプランを相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=シナリオ執筆の依頼について'">
+                <div class="price-title">シナリオ・SS執筆</div>
+                <div class="price-feature">
+                    <strong>✒️ お題3つから30分で執筆</strong><br>
+                    400字詰3枚程度のSSなら即興で構成可能。
+                </div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">5,000円〜 / 本</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">10,000円〜 / 本</span>
+                </div>
+                <div class="click-hint">✉ このプランを相談する</div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:60px;">
+            <a href="mailto:haneironokioku@gmail.com" class="contact-btn-main">仕事の依頼・相談をする</a>
+        </div>
+
+        <div style="text-align:center; margin-top:30px; margin-bottom:20px;">
+            <a href="/portfolio" style="color:#888; text-decoration:none; border-bottom:1px solid #888; transition:0.3s;" onmouseover="this.style.color='#0d47a1'" onmouseout="this.style.color='#888'">← ポートフォリオ選択へ戻る</a>
+        </div>
+
+    </div>
+
+    <!-- モーダル -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+    <script>
+        function openModal(el) {
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('modal-img').src = el.src;
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

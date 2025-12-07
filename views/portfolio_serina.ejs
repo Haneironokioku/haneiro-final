@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 芹菜用テーマカラー：プロフェッショナルな深いマゼンタと清潔な白 */
+        body { font-family: "Shippori Mincho", "Zen Kaku Gothic New", serif; margin: 0; background-color: #fdfdfd; color: #333; line-height: 1.8; }
+        header { text-align: center; padding: 20px; background: #fff; border-bottom: 4px solid #ad1457; position: relative; }
+        .back-home { position: absolute; left: 20px; top: 30px; text-decoration: none; color: #ad1457; font-weight: bold; font-family: sans-serif; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* ヒーローエリアの強化 */
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffffff 100%);
+            border-bottom: 1px solid #eee;
+        }
+        h1 { 
+            font-size: 2.8rem; 
+            color: #ad1457; 
+            margin-bottom: 10px; 
+            letter-spacing: 2px;
+        }
+        .sub-h1 { 
+            font-size: 1.2rem; 
+            color: #555; 
+            margin-bottom: 30px; 
+            font-family: sans-serif; 
+            font-weight: bold;
+        }
+        .catch-copy {
+            background-color: #ad1457;
+            color: #fff;
+            display: inline-block;
+            padding: 10px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transform: skew(-10deg); /* 勢いをつける */
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        .catch-copy span {
+            display: inline-block;
+            transform: skew(10deg); /* 文字の傾きを戻す */
+        }
+
+        h2 { text-align: center; font-size: 1.8rem; margin-top: 70px; margin-bottom: 40px; color: #880e4f; border-bottom: 2px solid #f8bbd0; padding-bottom: 15px; display: inline-block; width: 100%; }
+        
+        /* プロフィール */
+        .profile-box { background: #fff; padding: 30px; border-radius: 8px; display: flex; gap: 30px; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-left: 6px solid #ad1457; }
+        .skill-tags span { background: #fce4ec; color: #880e4f; padding: 5px 12px; border-radius: 4px; font-size: 0.9rem; margin-right: 5px; display: inline-block; font-family: sans-serif; font-weight: bold; }
+
+        /* 実績カード */
+        .achievement-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; border-left: 4px solid #ad1457; }
+
+        /* --- 最強プラン（ドル箱）エリア --- */
+        .special-plan-area {
+            background-color: #fff0f5;
+            border: 2px solid #ad1457;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(173, 20, 87, 0.15);
+        }
+        .best-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffd700;
+            color: #d35400;
+            padding: 10px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
+        }
+        .plan-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #ad1457;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .plan-desc {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #444;
+        }
+        .plan-details {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .plan-item {
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 1px solid #f8bbd0;
+            font-weight: bold;
+            color: #880e4f;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .plan-item::before {
+            content: "✔";
+            margin-right: 10px;
+            color: #ad1457;
+            font-size: 1.2rem;
+        }
+        .plan-target {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* 料金表エリア（通常） */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .price-card {
+            background: #fff;
+            border: 1px solid #fce4ec;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .price-card:hover {
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.1);
+            transform: translateY(-2px);
+            border-color: #f8bbd0;
+            background-color: #fff0f5;
+        }
+        .price-title {
+            color: #d81b60;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fce4ec;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .price-note { font-size: 0.8rem; color: #888; font-weight: normal; }
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; font-family: "Zen Kaku Gothic New", sans-serif; }
+        .client-type { color: #666; background: #f8f9fa; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; }
+        .client-type.biz { background: #fff0f5; color: #ad1457; }
+        .price-val { font-weight: bold; color: #333; }
+        .click-hint { font-size: 0.75rem; color: #d81b60; text-align: right; margin-top: 10px; font-weight: bold; font-family: sans-serif; }
+
+        /* ギャラリー共通 */
+        .gallery-grid { display: grid; gap: 20px; margin-bottom: 40px; }
+        .g-img { width: 100%; border-radius: 4px; cursor: pointer; transition: 0.3s; border: 1px solid #eee; }
+        .g-img:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .col-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .col-3 { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+        
+        .contact-btn-main {
+            display: inline-block;
+            background: linear-gradient(90deg, #ad1457, #d81b60);
+            color: #fff;
+            padding: 15px 60px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(173, 20, 87, 0.3);
+            transition: 0.3s;
+        }
+        .contact-btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(173, 20, 87, 0.4);
+        }
+
+        /* モーダル */
+        .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { max-width: 90%; max-height: 90vh; }
+        .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/portfolio" class="back-home">← Back to Portal</a>
+        <h1>TOMOKA SERINA PORTFOLIO</h1>
+        <!-- 肩書き変更 -->
+        <div class="sub-h1">Game UI Designer / Illustrator / Implementation Specialist</div>
+    </header>
+
+    <div class="hero-section">
+        <div class="catch-copy">
+            <span>実装に強いUI、作れます</span>
+        </div>
+        <p style="font-size:1.1rem; font-weight:bold;">
+            ゲームエンジン（Unity/Unreal/ツクール等）の仕様を熟知したUIデザイン。<br>
+            「絵が描ける」だけでなく、「動く画面」を設計する専門家です。
+        </p>
+    </div>
+
+    <div class="container">
+        
+        <section class="profile-box">
+            <div>
+                <h3 style="margin-top:0; color:#d81b60;">知花 芹菜 (Tomoka Serina)</h3>
+                <p>
+                    「羽根いろの記憶」代表 / <strong>ゲームUIデザイナー (兼イラストレーター)</strong><br>
+                    ただ綺麗なだけでなく、「プレイヤーの操作性」と「世界観」を統合するUIデザインが得意。<br>
+                    実装を考慮したパーツ分けやデータ設計まで行えるため、プログラマーとの連携もスムーズです。<br>
+                    イラスト制作も、「モンスター」「老人」「大量差分」など、高度で複雑なオーダーに対応可能です。
+                </p>
+                <div class="skill-tags">
+                    <span>Game UI Design</span>
+                    <span>Logo Design</span>
+                    <span>Character Design</span>
+                    <span>Game Dev Support</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最強のメインプラン（ドル箱） -->
+        <h2 style="margin-top:60px;">Recommended Plan / おすすめメインプラン</h2>
+        <div class="special-plan-area">
+            <div class="best-badge">開発者様必見！最強の解決策</div>
+            <div class="plan-title">ゲーム画面トータルコーディネート・パック</div>
+            <p class="plan-desc">
+                「バラバラに発注して管理に疲れていませんか？<br>
+                私一人で、世界観を統一した『動く画面』を納品します」
+            </p>
+            
+            <div class="plan-details">
+                <div class="plan-item">メインビジュアル</div>
+                <div class="plan-item">タイトルロゴ</div>
+                <div class="plan-item">UIデザイン一式</div>
+                <div class="plan-item">実装用データ作成</div>
+            </div>
+
+            <div class="plan-target">
+                <strong>【こんな方におすすめ】</strong><br>
+                個人開発者様 / 中小ゲームメーカー様<br>
+                「UIとイラストの絵柄が合わない」「パーツ分けがわからなくて実装に困る」といった悩みを一発で解決します。
+            </div>
+
+            <div style="text-align:center;">
+                <p style="font-size:1.5rem; font-weight:bold; color:#ad1457; margin-bottom:20px;">
+                    参考価格: 200,000円〜 <span style="font-size:1rem;">(要相談)</span>
+                </p>
+                <a href="mailto:haneironokioku@gmail.com?subject=トータルコーディネートパックの相談" class="contact-btn-main">このプランを相談する</a>
+            </div>
+        </div>
+
+        <!-- 通常料金表（UI優先） -->
+        <h2>Price List / 参考料金表</h2>
+        <p style="margin-bottom:30px; font-size:0.9rem;">
+            ※料金表をクリックすると、メール作成画面が開きます。
+        </p>
+        <div class="price-grid">
+            
+            <!-- UI系を上位に配置 -->
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=UIパッケージの依頼について'">
+                <div class="price-title">UIデザイン <span class="price-note">全体パッケージ</span></div>
+                <div style="font-size:0.8rem; color:#888; margin-bottom:10px;">タイトル、セーブ、メッセージ枠、アイコン類一式</div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">70,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">150,000円〜</span>
+                </div>
+                <div class="click-hint">✉ 相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=UIデザインの依頼について'">
+                <div class="price-title">UIデザイン <span class="price-note">一画面・パーツ</span></div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">15,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">40,000円〜</span>
+                </div>
+                <div class="click-hint">✉ 相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=ロゴ制作の依頼について'">
+                <div class="price-title">ロゴ制作</div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">15,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">50,000円〜</span>
+                </div>
+                <div class="click-hint">✉ 相談する</div>
+            </div>
+
+            <!-- イラスト系（技術力アピール） -->
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=モンスターイラストの依頼について'">
+                <div class="price-title">モンスター・人外</div>
+                <div style="font-size:0.8rem; color:#888; margin-bottom:10px;">複雑なデザインも対応可能</div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">15,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">40,000円〜</span>
+                </div>
+                <div class="click-hint">✉ 相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=立ち絵イラストの依頼について'">
+                <div class="price-title">立ち絵イラスト <span class="price-note">全身 / デザイン込</span></div>
+                <div style="font-size:0.8rem; color:#888; margin-bottom:10px;">老若男女・大量差分に対応</div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">40,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">70,000円〜</span>
+                </div>
+                <div class="click-hint">✉ 相談する</div>
+            </div>
+
+            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=一枚絵の依頼について'">
+                <div class="price-title">一枚絵 <span class="price-note">背景込 / 人物1人</span></div>
+                <div class="price-row">
+                    <span class="client-type">個人様</span>
+                    <span class="price-val">50,000円〜</span>
+                </div>
+                <div class="price-row">
+                    <span class="client-type biz">企業・商業</span>
+                    <span class="price-val">80,000円〜</span>
+                </div>
+                <div class="click-hint">✉ 相談する</div>
+            </div>
+
+        </div>
+
+        <h2>Awards / 実績</h2>
+        <div class="achievement-card">
+            <strong>🎓 専門校「バンタンゲームアカデミー」より講師オファー</strong><br>
+            <span style="font-size:0.9rem; color:#666;">過去制作RPG『ロストメモリーズ』のクオリティが評価され、正式にイラスト講師の登壇依頼を受領（※当時辞退）</span>
+        </div>
+
+        <!-- ギャラリー（UIを先頭に） -->
+        <h2>Game UI & Logo Works / UI・ロゴデザイン</h2>
+        <div class="gallery-grid col-2">
+            <img src="/images/serina_ui.jpg" class="g-img" onclick="openModal(this)">
+            <img src="/images/serina_logo.jpg" class="g-img" onclick="openModal(this)">
+        </div>
+
+        <h2>Character & Art Works / キャラクター・一枚絵</h2>
+        <div class="gallery-grid col-3">
+            <img src="/images/serina_chars1.jpg" class="g-img" onclick="openModal(this)">
+            <img src="/images/serina_chars2.jpg" class="g-img" onclick="openModal(this)">
+            <img src="/images/serina_chars3.jpg" class="g-img" onclick="openModal(this)">
+            <img src="/images/serina_art1.jpg" class="g-img" onclick="openModal(this)">
+            <img src="/images/serina_art5.jpg" class="g-img" onclick="openModal(this)">
+            <img src="/images/serina_dragon.jpg" class="g-img" onclick="openModal(this)">
+        </div>
+
+        <div style="text-align:center; margin-top:50px;">
+            <a href="mailto:haneironokioku@gmail.com" style="background:#d81b60; color:#fff; padding:15px 40px; text-decoration:none; border-radius:30px; font-weight:bold; box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);">仕事の依頼・相談をする</a>
+        </div>
+
+        <div style="text-align:center; margin-top:30px; margin-bottom:20px;">
+            <a href="/portfolio" style="color:#888; text-decoration:none; border-bottom:1px solid #888; transition:0.3s;" onmouseover="this.style.color='#d81b60'" onmouseout="this.style.color='#888'">← ポートフォリオ選択へ戻る</a>
+        </div>
+
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+    <script>
+        function openModal(el) {
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('modal-img').src = el.src;
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
