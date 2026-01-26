@@ -2,17 +2,18 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         /* KorDaiテーマ：サウンドウェーブ・ダーク・シアン */
-        body { font-family: "Zen Kaku Gothic New", sans-serif; margin: 0; background-color: #0a0a0a; color: #e0e0e0; line-height: 1.8; }
+        body { font-family: "Zen Kaku Gothic New", sans-serif; margin: 0; background-color: #0a0a0a; color: #e0e0e0; line-height: 1.8; overflow-x: hidden; }
         header { text-align: center; padding: 20px; background: #000; border-bottom: 2px solid #00bcd4; position: relative; }
         .back-home { position: absolute; left: 20px; top: 30px; text-decoration: none; color: #00bcd4; font-weight: bold; font-family: 'Orbitron', sans-serif; }
         
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 
-        /* ヒーローエリア（特大画像） */
+        /* ヒーローエリア */
         .hero-banner {
             width: 100%;
             height: auto;
@@ -22,7 +23,7 @@
             border: 1px solid #333;
         }
 
-        h1 { font-family: 'Orbitron', sans-serif; color: #fff; margin: 0; letter-spacing: 2px; }
+        h1 { font-family: 'Orbitron', sans-serif; color: #fff; margin: 0; letter-spacing: 2px; font-size: 2rem; }
         h2 { 
             text-align: center; 
             font-size: 1.8rem; 
@@ -40,6 +41,7 @@
             padding-left: 15px;
             margin-top: 40px;
             margin-bottom: 20px;
+            font-size: 1.3rem;
         }
 
         /* プロフィール */
@@ -75,17 +77,17 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* スマホで折り返す設定 */
             gap: 15px;
             border: 1px solid #333;
             transition: 0.3s;
         }
         .audio-card:hover { border-color: #00bcd4; box-shadow: 0 0 10px rgba(0, 188, 212, 0.1); }
         .audio-info { flex: 1; min-width: 200px; }
-        .audio-title { font-weight: bold; color: #fff; display: block; }
+        .audio-title { font-weight: bold; color: #fff; display: block; line-height: 1.4; }
         .audio-format { font-size: 0.75rem; color: #888; background: #222; padding: 2px 6px; border-radius: 4px; margin-left: 5px; }
-        .audio-player { flex: 2; min-width: 250px; display: flex; align-items: center; gap: 10px; }
-        audio { width: 100%; height: 30px; outline: none; }
+        .audio-player { flex: 2; min-width: 250px; display: flex; align-items: center; gap: 10px; width: 100%; }
+        audio { width: 100%; height: 35px; outline: none; }
         
         .download-link {
             color: #00bcd4;
@@ -95,6 +97,7 @@
             border: 1px solid #00bcd4;
             border-radius: 4px;
             transition: 0.3s;
+            flex-shrink: 0;
         }
         .download-link:hover { background: #00bcd4; color: #000; }
 
@@ -125,13 +128,15 @@
             transition: 0.3s;
             margin-top: 20px;
             box-shadow: 0 4px 15px rgba(252, 77, 80, 0.3);
+            text-align: center;
+            max-width: 100%;
         }
         .booth-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(252, 77, 80, 0.6); }
 
         /* 料金表 */
-        .price-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .price-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         
-        /* リンクタグに変更（クリックでメール起動） */
+        /* リンクタグ（クリックでメール起動） */
         a.price-item {
             display: block;
             text-decoration: none;
@@ -163,9 +168,26 @@
             margin-top: 40px;
             box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
             transition: 0.3s;
+            text-align: center;
+            max-width: 100%;
         }
         .contact-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 188, 212, 0.6); color: #fff; }
         .click-hint { font-size: 0.8rem; color: #00bcd4; margin-top: 15px; text-align: right; }
+
+        /* --- スマホ対応レスポンシブ設定 --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.4rem; margin-top: 40px; }
+            .profile-box, .shop-item, .price-item { padding: 20px; }
+            
+            /* 音楽プレイヤーを縦積みにする */
+            .audio-card { flex-direction: column; align-items: flex-start; }
+            .audio-info { width: 100%; margin-bottom: 10px; }
+            .audio-player { width: 100%; }
+            
+            .booth-btn, .contact-btn { width: 80%; padding: 15px 20px; font-size: 1rem; }
+            .back-home { top: 20px; left: 15px; font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
@@ -201,7 +223,7 @@
             </div>
         </section>
 
-        <!-- 制作実績・サンプル（試聴のみ / OGG） -->
+        <!-- 制作実績・サンプル（試聴のみ / WAVに修正） -->
         <h2>WORKS & SAMPLES / 制作実績</h2>
         <p style="text-align:center; font-size:0.9rem; color:#aaa; margin-bottom:20px;">
             ※ サンプル試聴のみ（<strong style="color:#ff4d4d;">ダウンロード不可・複製禁止</strong>）
@@ -211,31 +233,31 @@
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">タイトル曲</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_title.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_title.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">日常シーン</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_daily.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_daily.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">夢の中</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_dream.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_dream.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">伊織のテーマ</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_iori.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_iori.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">弦真のテーマ</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_genma.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/yumemiso_genma.wav"></audio>
             </div>
         </div>
 
@@ -243,25 +265,25 @@
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">タイトル</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_title.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_title.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">街</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_town.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_town.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">森</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_forest.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_forest.wav"></audio>
             </div>
         </div>
         <div class="audio-card">
             <div class="audio-info"><span class="audio-title">山</span></div>
             <div class="audio-player">
-                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_mountain.ogg"></audio>
+                <audio controls controlsList="nodownload" oncontextmenu="return false;" src="/audio/haneiro_mountain.wav"></audio>
             </div>
         </div>
 
@@ -347,7 +369,6 @@
             ※クリックするとメールソフトが起動します
         </p>
         <div class="price-list">
-            <!-- リンクタグに戻しました -->
             <a href="mailto:kouyan16ss2s@gmail.com?subject=通常BGM制作の依頼" class="price-item">
                 <span class="price-name">通常料金1曲</span>
                 <span class="price-val">15,000円</span>
