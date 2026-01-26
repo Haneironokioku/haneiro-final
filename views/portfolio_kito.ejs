@@ -82,7 +82,11 @@
             flex-direction: column;
             gap: 40px;
         }
-        .plan-card {
+        /* リンクタグ用にスタイル調整 */
+        a.plan-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
             background: #fff;
             border: 1px solid #e0e0e0;
             border-radius: 12px;
@@ -92,7 +96,7 @@
             position: relative;
             cursor: pointer;
         }
-        .plan-card:hover {
+        a.plan-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(13, 71, 161, 0.15);
             border-color: #90caf9;
@@ -168,13 +172,13 @@
         }
 
         /* PLAN Aの特別装飾 */
-        .plan-card.premium {
+        a.plan-card.premium {
             border: 2px solid #ffd700;
         }
-        .plan-card.premium .plan-header {
+        a.plan-card.premium .plan-header {
             background: linear-gradient(to right, #fff8e1, #fff);
         }
-        .plan-card.premium .plan-badge {
+        a.plan-card.premium .plan-badge {
             background: #ffd700;
             color: #d35400;
             font-weight: bold;
@@ -226,6 +230,99 @@
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(13, 71, 161, 0.4);
         }
+
+        /* 料金表エリア（季都ver） */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        /* リンクタグに変更 */
+        a.price-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: #fff;
+            border: 1px solid #e3f2fd;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        a.price-card:hover {
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.2);
+            transform: translateY(-2px);
+            border-color: #90caf9;
+            background-color: #f0f8ff;
+        }
+        /* おすすめバッジ */
+        .recommend-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #ffd700;
+            color: #d35400;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .price-title {
+            color: #0277bd;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e1f5fe;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .price-feature {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 15px;
+            background: #f1f8e9;
+            padding: 8px;
+            border-radius: 4px;
+            border-left: 3px solid #7cb342;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .client-type {
+            color: #666;
+            background: #f8f9fa;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .client-type.biz {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+        .price-val {
+            font-weight: bold;
+            color: #333;
+        }
+        /* クリック誘導テキスト */
+        .click-hint {
+            font-size: 0.75rem;
+            color: #007bff;
+            text-align: right;
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -274,7 +371,7 @@
         <div class="plan-section">
             
             <!-- PLAN A -->
-            <div class="plan-card premium" onclick="location.href='mailto:haneironokioku@gmail.com?subject=トータル・プロデュースの相談'">
+            <a href="mailto:haneironokioku@gmail.com?subject=トータル・プロデュースの相談" class="plan-card premium">
                 <div class="plan-header">
                     <div>
                         <span class="plan-badge">PLAN A</span>
@@ -296,10 +393,10 @@
                         「イラストと3Dを別々の人に頼んで『顔が違う…』と悩む必要はありません。私が全責任を持って、イメージを統一させます」
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- PLAN B -->
-            <div class="plan-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3Dキャラクター制作の相談'">
+            <a href="mailto:haneironokioku@gmail.com?subject=3Dキャラクター制作の相談" class="plan-card">
                 <div class="plan-header">
                     <div>
                         <span class="plan-badge">PLAN B</span>
@@ -323,10 +420,10 @@
                         「ハネリゼのような『進化するモンスター』のデザインと3D化は、私の独壇場です。あなたのゲームの相棒を作らせてください」
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- PLAN C -->
-            <div class="plan-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=キービジュアル・イラストの相談'">
+            <a href="mailto:haneironokioku@gmail.com?subject=キービジュアル・イラストの相談" class="plan-card">
                 <div class="plan-header">
                     <div>
                         <span class="plan-badge">PLAN C</span>
@@ -347,7 +444,7 @@
                         「流行りの淡い絵ではありません。視線を釘付けにする『強い絵』が必要な時、私を頼ってください」
                     </div>
                 </div>
-            </div>
+            </a>
 
         </div>
 
@@ -366,24 +463,24 @@
             </p>
         </div>
 
-        <!-- 3Dモデルギャラリー（修正：リネーム後のパスを使用） -->
+        <!-- 3Dモデルギャラリー -->
         <h2>3D WORKS / 制作実績</h2>
         <div class="model-grid">
-            <img src="/images/kito_model_marin.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/kito_model_rei.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/kito_model_uno.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/kito_model_hanelize.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/kito_model_vesta.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/kito_model_alisia.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_marin.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_rei.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_uno.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_hanelize.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_seraphy.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/portfolio_alisia.jpg" class="model-img" onclick="openModal(this)">
         </div>
 
-        <!-- デザイン・依頼実績（修正：リネーム後のパスを使用） -->
+        <!-- デザイン・依頼実績 -->
         <h2>CLIENT WORKS / デザイン・依頼実績</h2>
         <div class="work-grid">
-            <img src="/images/kito_work_samurai1.jpg" class="work-img" onclick="openModal(this)">
-            <img src="/images/kito_work_samurai2.jpg" class="work-img" onclick="openModal(this)">
-            <img src="/images/kito_work_party.jpg" class="work-img" onclick="openModal(this)">
-            <img src="/images/kito_design_hanelize.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_irai01.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_irai02.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_irai03.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/portfolio_hanelize_rahu.jpg" class="work-img" onclick="openModal(this)">
         </div>
 
         <!-- 料金表エリア -->
@@ -394,7 +491,7 @@
         </p>
         
         <div class="price-grid">
-            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3D等身モデル制作の依頼について'">
+            <a href="mailto:haneironokioku@gmail.com?subject=3D等身モデル制作の依頼について" class="price-card">
                 <div class="recommend-badge">推し！</div>
                 <div class="price-title">3D等身モデル制作</div>
                 <div class="price-feature">
@@ -410,9 +507,9 @@
                     <span class="price-val">120,000円〜</span>
                 </div>
                 <div class="click-hint">✉ このプランを相談する</div>
-            </div>
+            </a>
 
-            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3DSDモデル制作の依頼について'">
+            <a href="mailto:haneironokioku@gmail.com?subject=3DSDモデル制作の依頼について" class="price-card">
                 <div class="price-title">3D SD(ちび)モデル</div>
                 <div class="price-feature">
                     <strong>⚡ プラス4時間で制作</strong><br>
@@ -427,9 +524,9 @@
                     <span class="price-val">60,000円〜</span>
                 </div>
                 <div class="click-hint">✉ このプランを相談する</div>
-            </div>
+            </a>
 
-            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3D人外・マスコット制作の依頼について'">
+            <a href="mailto:haneironokioku@gmail.com?subject=3D人外・マスコット制作の依頼について" class="price-card">
                 <div class="price-title">3D 人外・マスコット</div>
                 <div class="price-feature">
                     <strong>🐲 約4時間で制作</strong><br>
@@ -444,9 +541,9 @@
                     <span class="price-val">60,000円〜</span>
                 </div>
                 <div class="click-hint">✉ このプランを相談する</div>
-            </div>
+            </a>
 
-            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3Dマップ制作の依頼について'">
+            <a href="mailto:haneironokioku@gmail.com?subject=3Dマップ制作の依頼について" class="price-card">
                 <div class="price-title">3D マップ・背景制作</div>
                 <div class="price-feature">
                     <strong>🏘️ 1マップ最短4時間〜</strong><br>
@@ -461,9 +558,9 @@
                     <span class="price-val">80,000円〜</span>
                 </div>
                 <div class="click-hint">✉ このプランを相談する</div>
-            </div>
+            </a>
 
-            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=キャラクターデザインの依頼について'">
+            <a href="mailto:haneironokioku@gmail.com?subject=キャラクターデザインの依頼について" class="price-card">
                 <div class="price-title">キャラクターデザイン</div>
                 <div class="price-feature">
                     <strong>🎨 最短1日で立ち絵完成</strong><br>
@@ -478,9 +575,9 @@
                     <span class="price-val">60,000円〜</span>
                 </div>
                 <div class="click-hint">✉ このプランを相談する</div>
-            </div>
+            </a>
 
-            <div class="price-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=シナリオ執筆の依頼について'">
+            <a href="mailto:haneironokioku@gmail.com?subject=シナリオ執筆の依頼について" class="price-card">
                 <div class="price-title">シナリオ・SS執筆</div>
                 <div class="price-feature">
                     <strong>✒️ お題3つから30分で執筆</strong><br>
@@ -495,7 +592,7 @@
                     <span class="price-val">10,000円〜 / 本</span>
                 </div>
                 <div class="click-hint">✉ このプランを相談する</div>
-            </div>
+            </a>
         </div>
 
         <div style="text-align:center; margin-top:60px;">

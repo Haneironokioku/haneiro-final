@@ -37,6 +37,11 @@ app.get('/portfolio/serina', (req, res) => {
     res.render('portfolio_serina', { title: 'Tomoka Serina Portfolio | Art & Design' });
 });
 
+// 4. DJ KorDai のページ
+app.get('/portfolio/kordai', (req, res) => {
+    res.render('portfolio_kordai', { title: 'DJ KorDai Portfolio | Sound Director' });
+});
+
 // サーバー起動設定（Vercel対応）
 if (require.main === module) {
     app.listen(port, () => {

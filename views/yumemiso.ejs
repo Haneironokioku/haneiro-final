@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><%= title %></title>
+    <!-- フォントの読み込み -->
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* ページ全体の設定 */
@@ -94,6 +95,34 @@
             white-space: pre-wrap; /* 改行をそのまま表示 */
         }
 
+        /* ダウンロードエリア */
+        .download-box {
+            background-color: #f9f0f2;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #eebbcb;
+        }
+        .dl-btn {
+            display: inline-block;
+            background-color: #d81b60;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .dl-btn:hover {
+            background-color: #ad1457;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+        .dl-btn.freem { background-color: #4CAF50; }
+        .dl-btn.booth { background-color: #fc4d50; }
+
         /* 製品情報 */
         table {
             width: 100%;
@@ -138,12 +167,14 @@
 </head>
 <body>
 
+    <!-- ヘッダー -->
     <header>
         <a href="/">
             <img src="/images/logo.png" alt="羽根いろの記憶" class="site-logo">
         </a>
     </header>
 
+    <!-- メインビジュアルエリア -->
     <div class="hero">
         <img src="/images/yumemiso_poster.jpg" alt="夢見草の夜、君と キービジュアル">
         <div class="catchphrase">夢に咲き、記憶に結ぶ、切ない恋の物語</div>
@@ -151,6 +182,24 @@
 
     <div class="container">
         
+        <!-- ダウンロード・販売情報（新規追加） -->
+        <section>
+            <div class="section-center">
+                <h2>体験版配信中</h2>
+            </div>
+            <div class="download-box">
+                <p>物語の序盤をお楽しみいただける体験版を公開中です。</p>
+                <div>
+                    <a href="https://www.freem.ne.jp/win/game/34431" target="_blank" class="dl-btn freem">ふりーむ！でDL</a>
+                    <a href="https://haneironokioku.booth.pm/items/7770210" target="_blank" class="dl-btn booth">BOOTHでDL</a>
+                </div>
+                <p style="margin-top: 20px; font-weight: bold; color: #d81b60;">
+                    ※ 製品版は BOOTH / DLsite / Steam で販売予定
+                </p>
+            </div>
+        </section>
+
+        <!-- こだわり・特徴 -->
         <section>
             <div class="section-center">
                 <h2>特徴・こだわり</h2>
@@ -173,6 +222,7 @@
             </div>
         </section>
 
+        <!-- あらすじ -->
         <section>
             <div class="section-center">
                 <h2>あらすじ</h2>
@@ -197,6 +247,7 @@
             </div>
         </section>
 
+        <!-- 製品情報 -->
         <section>
             <div class="section-center">
                 <h2>製品情報</h2>
@@ -217,6 +268,10 @@
                 <tr>
                     <th>価格</th>
                     <td>体験版無料 / 製品版有料</td>
+                </tr>
+                <tr>
+                    <th>販売予定</th>
+                    <td>BOOTH / DLsite / Steam</td>
                 </tr>
                 <tr>
                     <th>制作者</th>

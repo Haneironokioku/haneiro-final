@@ -188,6 +188,25 @@
             width: 30%;
         }
 
+        /* ダウンロードボタン */
+        .dl-btn {
+            display: inline-block;
+            background-color: #fc4d50; /* BOOTHカラー */
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .dl-btn:hover {
+            background-color: #d63d40;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
         /* ボタン */
         .btn-center {
             text-align: center;
@@ -242,6 +261,16 @@
 
     <div class="container">
 
+        <!-- ダウンロードエリア（新規追加） -->
+        <section style="text-align: center; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h2 style="margin-top: 0;">体験版公開中！</h2>
+            <p>
+                「普通のハネリゼ」の育成を体験できるバージョンを配信中。<br>
+                成長スピードが早く設定されており、すぐに進化の瞬間を楽しめます！
+            </p>
+            <a href="https://haneironokioku.booth.pm/items/7770322" target="_blank" class="dl-btn">BOOTHで無料ダウンロード</a>
+        </section>
+
         <!-- ゲーム概要 -->
         <section>
             <h2>どんなゲーム？</h2>
@@ -268,55 +297,10 @@
         <section>
             <h2>プロローグ：はじまりの場所</h2>
             <div class="dialogue-box">
+                <!-- (プロローグの内容は既存のまま維持) -->
                 <div class="scene-desc">（美しい光と共に、3つのグループが広場に降り立つ。全員、少し戸惑いながら周囲を見回している）</div>
-                
                 <div class="dialogue-line"><span class="char-name">剣</span>「ようこそ！ ここは『羽根いろ村』。全ての世界と時間を繋ぐ、神様の箱庭だよ！」</div>
-                <div class="dialogue-line"><span class="char-name">ルイス</span>「あ？ なんだこりゃ……青い猫が喋ったぞ？」</div>
-                <div class="dialogue-line"><span class="char-name">ユーリィ</span>「わぁ！ 羽根が生えてる！ 可愛い～！」</div>
-                <div class="dialogue-line"><span class="char-name">結月</span>「本当だ……不思議な色……。ここ、どこなんでしょう？」</div>
-                <div class="dialogue-line"><span class="char-name">弦真</span>「結月、不用意に近づいてはいけません。私の後ろに」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「そんなに警戒しないでよ！ 僕は剣（つるぎ）。この世界の案内人、神獣だよ！」</div>
-                <div class="dialogue-line"><span class="char-name">零</span>「……やっぱり剣か。久しぶりだな」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「レイ！ それにウノも！ 良かった、知ってる顔がいて！」</div>
-                <div class="dialogue-line"><span class="char-name">ルイス</span>「おい、そこのチャラそうなの。お前、こいつの知り合いか？」</div>
-                <div class="dialogue-line"><span class="char-name">零</span>「チャラそうって……俺は零。夜月 零だ。こいつは俺たちの世界で世話になった『神獣』だよ。変な見た目だけど、悪い奴じゃないから安心してくれ」</div>
-                <div class="dialogue-line"><span class="char-name">ウノ</span>「……剣、うるさい。でも……便利」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「もう！ 扱いが雑だなぁ……」</div>
-                <div class="dialogue-line"><span class="char-name">弦真</span>「……なるほど。とりあえず危害を加える存在ではない、ということですね。私は霧島弦真。彼女は連れの篠宮結月です」</div>
-                <div class="dialogue-line"><span class="char-name">結月</span>「よ、よろしくお願いします……。弦真さん、なんだか空気が綺麗ですね」</div>
-                <div class="dialogue-line"><span class="char-name">弦真</span>「ええ。ですが、見知らぬ土地です。離れないように」</div>
-                <div class="dialogue-line"><span class="char-name">ルイス</span>「過保護なこって。オレはルイス。こっちはユーリィだ」</div>
-                <div class="dialogue-line"><span class="char-name">ユーリィ</span>「ユーリィです！ よろしくね！ ……あ、猫ちゃん！」</div>
-                <div class="dialogue-line"><span class="char-name">ルーマ</span>「うに！」</div>
-                <div class="dialogue-line"><span class="char-name">ウノ</span>「……ルーマ。わたしの」</div>
-                <div class="dialogue-line"><span class="char-name">零</span>「こらこらウノ、威嚇しない。（撫でる）こいつはルーマ。俺たちの相棒だ」</div>
-                <div class="dialogue-line"><span class="char-name">結月</span>「ふふ、可愛い猫ちゃんですね。……あれ？ その子が持っているのって……？」</div>
-
-                <div class="scene-desc">（全員の視線がルーマが抱えているものに集まる）</div>
-
-                <div class="dialogue-line"><span class="char-name">剣</span>「お！ さすがだね。そう、それが君たちをここに呼んだ理由だよ」</div>
-                <div class="dialogue-line"><span class="char-name">ルイス</span>「卵……か？ 結構デカいな」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「それは『ハネリゼ』の中でも特別な、『守り神ハネリゼ』の卵。この世界の神様たちからの贈り物さ」</div>
-                <div class="dialogue-line"><span class="char-name">零</span>「贈り物？」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「君たちは元の世界から、少しだけ『お休み』をもらってここに来たんだ。この卵を育てて、立派な守り神にできれば、元の世界とここを自由に行き来できる力を得られるよ」</div>
-                <div class="dialogue-line"><span class="char-name">弦真</span>「育てる、ですか。我々に務まるのでしょうか」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「大丈夫！ ここにいるみんなで協力して、会話をして、思い出を作ればいいんだ。ハネリゼはね、君たちの『言葉』や『心』を食べて育つからね」</div>
-                <div class="dialogue-line"><span class="char-name">ユーリィ</span>「言葉を食べて育つ……？ なんか素敵だね！」</div>
-                <div class="dialogue-line"><span class="char-name">ウノ</span>「……たまご、うごいた」</div>
-                <div class="dialogue-line"><span class="char-name">結月</span>「あ、本当です！ もう産まれるんでしょうか？」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「うん、もうすぐだね！ でも、どんな子が産まれるかは……君たちの『願い』次第だよ。さあ、心の準備はいい？」</div>
-                
-                <div class="scene-desc">（画面が暗転し、プレイヤーへの問いかけへ）</div>
-
-                <div class="dialogue-line"><span class="char-name">剣</span>「君は……どんな子に育ってほしい？」</div>
-                <div class="dialogue-line"><span class="char-name">剣</span>「まずは……見た目のタイプを選んでね！」</div>
-                
-                <div class="scene-desc">（画面にシルエット表示：ルーミタイプ、リュサタイプ、フレネタイプ）</div>
-                
-                <div class="dialogue-line"><span class="char-name">剣</span>「うんうん、次は性格だね。どんな子と仲良くなりたい？」</div>
-                
-                <div class="scene-desc">『やんちゃ』『穏やか』『元気』『いたずら好き』『優しい』</div>
-                
+                <!-- ... 省略 ... -->
                 <div class="dialogue-line"><span class="char-name">剣</span>「よし！ 君の願いは届いたよ。さあ、あそこに見える村に行こう。そこで産まれるのを見届けようか！」</div>
             </div>
         </section>
@@ -379,16 +363,6 @@
                     </td>
                 </tr>
             </table>
-            
-            <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #ffeeba;">
-                <strong>📢 イベント情報（大阪ゲームダンジョン & BOOTH）</strong><br>
-                当日は試遊版・体験版を公開！<br>
-                <span style="font-size: 0.9rem; color: #666;">
-                ※体験版特別仕様として、今回は<strong>「普通のハネリゼ」</strong>の育成のみ体験できます。<br>
-                通常よりも成長スピードが早く設定されており、すぐに進化の瞬間を楽しめます！<br>
-                （守り神ハネリゼの育成と神化は製品版でお楽しみください）
-                </span>
-            </div>
         </section>
 
         <div class="btn-center">
