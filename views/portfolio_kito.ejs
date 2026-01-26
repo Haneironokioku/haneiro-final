@@ -72,6 +72,7 @@
         .profile-text { font-size: 1.05rem; margin-top: 20px; }
         
         /* 実績ランキング */
+        .ranking-area { margin-top: 30px; border-top: 1px dashed #ddd; padding-top: 20px; }
         .ranking-container { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
         .ranking-img { width: 150px; border-radius: 4px; border: 2px solid #ffd700; cursor: pointer; transition: 0.3s; }
         .ranking-img:hover { transform: scale(1.05); }
@@ -82,11 +83,7 @@
             flex-direction: column;
             gap: 40px;
         }
-        /* リンクタグ用にスタイル調整 */
-        a.plan-card {
-            display: block;
-            text-decoration: none;
-            color: inherit;
+        .plan-card {
             background: #fff;
             border: 1px solid #e0e0e0;
             border-radius: 12px;
@@ -96,7 +93,7 @@
             position: relative;
             cursor: pointer;
         }
-        a.plan-card:hover {
+        .plan-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(13, 71, 161, 0.15);
             border-color: #90caf9;
@@ -172,13 +169,13 @@
         }
 
         /* PLAN Aの特別装飾 */
-        a.plan-card.premium {
+        .plan-card.premium {
             border: 2px solid #ffd700;
         }
-        a.plan-card.premium .plan-header {
+        .plan-card.premium .plan-header {
             background: linear-gradient(to right, #fff8e1, #fff);
         }
-        a.plan-card.premium .plan-badge {
+        .plan-card.premium .plan-badge {
             background: #ffd700;
             color: #d35400;
             font-weight: bold;
@@ -356,9 +353,10 @@
             </div>
             
             <!-- 実績ランキング -->
-            <div style="margin-top:30px; border-top:1px dashed #ddd; padding-top:20px;">
+            <div class="ranking-area">
                 <strong>🏆 アルファポリス 少年漫画ランク1位・人気HOT2位 獲得</strong>
                 <div class="ranking-container">
+                    <!-- ランキング画像は元のファイル名のまま -->
                     <img src="/images/lanking_syounen.jpg" class="ranking-img" onclick="openModal(this)">
                     <img src="/images/lanking.jpg" class="ranking-img" onclick="openModal(this)">
                     <img src="/images/lanking_hot.jpg" class="ranking-img" onclick="openModal(this)">
@@ -371,7 +369,7 @@
         <div class="plan-section">
             
             <!-- PLAN A -->
-            <a href="mailto:haneironokioku@gmail.com?subject=トータル・プロデュースの相談" class="plan-card premium">
+            <div class="plan-card premium" onclick="location.href='mailto:haneironokioku@gmail.com?subject=トータル・プロデュースの相談'">
                 <div class="plan-header">
                     <div>
                         <span class="plan-badge">PLAN A</span>
@@ -393,10 +391,10 @@
                         「イラストと3Dを別々の人に頼んで『顔が違う…』と悩む必要はありません。私が全責任を持って、イメージを統一させます」
                     </div>
                 </div>
-            </a>
+            </div>
 
             <!-- PLAN B -->
-            <a href="mailto:haneironokioku@gmail.com?subject=3Dキャラクター制作の相談" class="plan-card">
+            <div class="plan-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=3Dキャラクター制作の相談'">
                 <div class="plan-header">
                     <div>
                         <span class="plan-badge">PLAN B</span>
@@ -420,10 +418,10 @@
                         「ハネリゼのような『進化するモンスター』のデザインと3D化は、私の独壇場です。あなたのゲームの相棒を作らせてください」
                     </div>
                 </div>
-            </a>
+            </div>
 
             <!-- PLAN C -->
-            <a href="mailto:haneironokioku@gmail.com?subject=キービジュアル・イラストの相談" class="plan-card">
+            <div class="plan-card" onclick="location.href='mailto:haneironokioku@gmail.com?subject=キービジュアル・イラストの相談'">
                 <div class="plan-header">
                     <div>
                         <span class="plan-badge">PLAN C</span>
@@ -444,7 +442,7 @@
                         「流行りの淡い絵ではありません。視線を釘付けにする『強い絵』が必要な時、私を頼ってください」
                     </div>
                 </div>
-            </a>
+            </div>
 
         </div>
 
@@ -463,24 +461,24 @@
             </p>
         </div>
 
-        <!-- 3Dモデルギャラリー -->
+        <!-- 3Dモデルギャラリー（修正：リネーム後のパス） -->
         <h2>3D WORKS / 制作実績</h2>
         <div class="model-grid">
-            <img src="/images/portfolio_marin.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/portfolio_rei.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/portfolio_uno.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/portfolio_hanelize.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/portfolio_seraphy.jpg" class="model-img" onclick="openModal(this)">
-            <img src="/images/portfolio_alisia.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/kito_model_marin.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/kito_model_rei.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/kito_model_uno.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/kito_model_hanelize.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/kito_model_vesta.jpg" class="model-img" onclick="openModal(this)">
+            <img src="/images/kito_model_alisia.jpg" class="model-img" onclick="openModal(this)">
         </div>
 
-        <!-- デザイン・依頼実績 -->
+        <!-- デザイン・依頼実績（修正：リネーム後のパス） -->
         <h2>CLIENT WORKS / デザイン・依頼実績</h2>
         <div class="work-grid">
-            <img src="/images/portfolio_irai01.jpg" class="work-img" onclick="openModal(this)">
-            <img src="/images/portfolio_irai02.jpg" class="work-img" onclick="openModal(this)">
-            <img src="/images/portfolio_irai03.jpg" class="work-img" onclick="openModal(this)">
-            <img src="/images/portfolio_hanelize_rahu.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/kito_work_samurai1.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/kito_work_samurai2.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/kito_work_party.jpg" class="work-img" onclick="openModal(this)">
+            <img src="/images/kito_design_hanelize.jpg" class="work-img" onclick="openModal(this)">
         </div>
 
         <!-- 料金表エリア -->
