@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;700&family=Cinzel:wght@700&family=Shippori+Mincho:wght@700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;700&family=Cinzel:wght@700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -28,7 +28,7 @@
             border-radius: 4px;
         }
         
-        /* --- 3分割コンテナ --- */
+        /* --- 2分割コンテナ --- */
         .split-container {
             display: flex;
             height: 100vh;
@@ -66,28 +66,17 @@
             background-position: center 20%;
         }
 
-        /* 2. 季都 (Center) */
+        /* 2. 季都 (Right) */
         .kito-side {
             background: linear-gradient(rgba(13, 71, 161, 0.7), rgba(13, 71, 161, 0.7)), url('/images/kito_model_rei.jpg');
             background-size: cover;
             background-position: center top;
+            border-right: none;
         }
         .kito-side:hover {
             background: linear-gradient(rgba(33, 150, 243, 0.4), rgba(33, 150, 243, 0.4)), url('/images/kito_model_rei.jpg');
             background-size: cover;
             background-position: center top;
-        }
-
-        /* 3. KorDai (Right) */
-        .kordai-side {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/images/kordai_banner.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .kordai-side:hover {
-            background: linear-gradient(rgba(0, 188, 212, 0.4), rgba(0, 188, 212, 0.4)), url('/images/kordai_banner.jpg');
-            background-size: cover;
-            background-position: center;
         }
 
         /* タイポグラフィ */
@@ -101,7 +90,6 @@
         /* フォントの使い分け */
         .font-serina { font-family: 'Shippori Mincho', serif; }
         .font-kito { font-family: 'Cinzel', serif; }
-        .font-kordai { font-family: 'Orbitron', sans-serif; }
 
         .job-title {
             font-size: 1rem;
@@ -165,7 +153,7 @@
             60% {transform: translateY(-5px) translateX(-50%);}
         }
 
-        /* 以下、チームセクション（既存と同じ） */
+        /* 以下、チームセクション */
         .team-section { background-color: #111; padding: 80px 20px; color: #fff; text-align: center; border-top: 1px solid #333; }
         
         .team-title { 
@@ -173,7 +161,6 @@
             font-size: 2.5rem; 
             margin-bottom: 10px; 
             background: linear-gradient(90deg, #d81b60, #007bff); 
-            /* 修正箇所：標準プロパティを追加しました */
             background-clip: text;
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
@@ -228,13 +215,6 @@
             <div class="enter-btn">VIEW PORTFOLIO</div>
         </a>
 
-        <!-- 3. KorDai -->
-        <a href="/portfolio/kordai" class="split kordai-side">
-            <h2 class="name-title font-kordai">KorDai</h2>
-            <div class="job-title">Sound & BGM</div>
-            <div class="enter-btn">VIEW PORTFOLIO</div>
-        </a>
-
         <div class="scroll-down" onclick="document.getElementById('team-service').scrollIntoView({behavior: 'smooth'})">
             <span class="scroll-text">Studio Works</span>
             ▼
@@ -244,7 +224,7 @@
     <!-- チーム制作セクション -->
     <div id="team-service" class="team-section">
         <h2 class="team-title">Studio HANEIRO Production</h2>
-        <p class="team-subtitle">季都 × 芹菜 × KorDai による、世界観統一・一括制作サービス</p>
+        <p class="team-subtitle">季都 × 芹菜 による、世界観統一・一括制作サービス</p>
 
         <div class="service-grid">
             
@@ -254,13 +234,12 @@
                 <span class="svc-price">300,000円〜</span>
                 <p class="svc-desc">
                     「あなたの企画を、動く形にします」。<br>
-                    季都の高速実装力、芹菜の世界観構築、KorDaiのサウンド演出を合わせ、最短1ヶ月でプレイアブルな試作版を制作します。
+                    季都の高速実装力、芹菜の世界観構築を合わせ、最短1ヶ月でプレイアブルな試作版を制作します。
                 </p>
                 <div class="svc-tags">
                     <span class="tag">UE5</span>
                     <span class="tag">3D Map</span>
                     <span class="tag">UI/Logo</span>
-                    <span class="tag">Sound</span>
                 </div>
             </div>
 
@@ -269,13 +248,12 @@
                 <div class="svc-title">✨ 3D VTuber デビューパック</div>
                 <span class="svc-price">250,000円〜</span>
                 <p class="svc-desc">
-                    「身体」と「活動場所」と「声(BGM)」をワンストップで。<br>
-                    3Dモデル・配信UI・専用BGMを一括制作。デザインと音の齟齬がなく、最高級のブランド力でデビューできます。
+                    「身体」と「活動場所」をワンストップで。<br>
+                    3Dモデル・配信UIを一括制作。デザインの齟齬がなく、最高級のブランド力でデビューできます。
                 </p>
                 <div class="svc-tags">
                     <span class="tag">VRoid High-End</span>
                     <span class="tag">Logo/UI</span>
-                    <span class="tag">Original BGM</span>
                 </div>
             </div>
 
@@ -285,13 +263,12 @@
                 <span class="svc-price">500,000円〜</span>
                 <p class="svc-desc">
                     企業のPRや、個人の記念・頒布用ゲーム制作。<br>
-                    シナリオ執筆からキャラデザ、システム、そして感動を呼ぶBGMまで全て丸投げ可能です。
+                    シナリオ執筆からキャラデザ、システム構築まで全て丸投げ可能です。
                 </p>
                 <div class="svc-tags">
                     <span class="tag">Full Package</span>
                     <span class="tag">Scenario</span>
                     <span class="tag">Art</span>
-                    <span class="tag">Sound</span>
                 </div>
             </div>
 

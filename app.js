@@ -21,7 +21,6 @@ app.get('/yumemiso', (req, res) => {
 });
 
 // --- ポートフォリオ関連 ---
-
 // 1. ポートフォリオ総合トップ（入口）
 app.get('/portfolio', (req, res) => {
     res.render('portfolio', { title: 'Portfolio Portal | 羽根いろの記憶' });
@@ -37,11 +36,6 @@ app.get('/portfolio/serina', (req, res) => {
     res.render('portfolio_serina', { title: 'Tomoka Serina Portfolio | Art & Design' });
 });
 
-// 4. DJ KorDai のページ
-app.get('/portfolio/kordai', (req, res) => {
-    res.render('portfolio_kordai', { title: 'DJ KorDai Portfolio | Sound Director' });
-});
-
 // サーバー起動設定（Vercel対応）
 if (require.main === module) {
     app.listen(port, () => {
@@ -49,4 +43,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = app; // ここが重要！Vercelにアプリを渡すための記述
+module.exports = app;
